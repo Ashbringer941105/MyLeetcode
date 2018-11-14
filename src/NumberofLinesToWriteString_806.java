@@ -22,4 +22,23 @@ S = "bbbcccdddaaa"
 所以，这个答案是2行，第二行有4个单位宽度。
  */
 public class NumberofLinesToWriteString_806 {
+    public int[] numberOfLines(int[] widths, String S) {
+        char[] chars = S.toCharArray();
+        int length = 0;
+        int line = 1;
+        for(char c:chars){
+            if(length + widths[c-97]>100){
+                // 如果加上这个字母就大于100了
+                line += 1;
+                length = widths[c-97];
+            }else {
+                // 如果加上这个字母并不满
+                length += widths[c-97];
+
+            }
+        }
+        int[] result = {line,length};
+        return result;
+
+    }
 }
