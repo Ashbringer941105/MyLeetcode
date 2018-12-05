@@ -28,28 +28,56 @@ import sun.reflect.generics.tree.Tree;
 后序遍历  左右根
  */
 public class ConstructBinaryTreefromInorderandPostorderTraversal_106 {
+//    public TreeNode buildTree(int[] inorder, int[] postorder) {
+//
+//        return creatTree(inorder,0,inorder.length-1,postorder,0, postorder.length-1);
+//    }
+//    public TreeNode creatTree(int[] inorder,int iLeft,int iRight,int[] postorder,int pLeft,int pRight){
+//        if(iLeft>iRight || pLeft>pRight){
+//            return null;
+//        }
+//        TreeNode root = new TreeNode(postorder[pRight]);
+//        //root.val = postorder[pRight];
+//        int index = 0;
+//        for(int i=iLeft;i<=iRight;i++){
+//            if(inorder[i]==root.val){
+//                index = i;
+//                break;
+//            }
+//        }
+//        int leftcount = index-iLeft;
+//        root.left = creatTree(inorder,iLeft,index-1,postorder,pLeft,pLeft+leftcount-1);
+//        root.right = creatTree(inorder,index+1,iRight,postorder,pLeft+leftcount,pRight-1);
+//
+//        return root;
+//    }
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-
-        return creatTree(inorder,0,inorder.length-1,postorder,0, postorder.length-1);
+        if(inorder.length==0||postorder.length==0){
+            return null;
+        }
+        return bb(inorder,0,inorder.length-1,postorder,0,postorder.length-1);
     }
-    public TreeNode creatTree(int[] inorder,int iLeft,int iRight,int[] postorder,int pLeft,int pRight){
+    public TreeNode bb(int[] inorder,int iLeft,int iRight, int[] postorder,int pLeft,int pRight){
         if(iLeft>iRight || pLeft>pRight){
             return null;
         }
         TreeNode root = new TreeNode(postorder[pRight]);
-        //root.val = postorder[pRight];
-        int index = 0;
-        for(int i=iLeft;i<=iRight;i++){
-            if(inorder[i]==root.val){
+        int index =find(inorder,root.val);
+        int leftcount = index - iLeft;
+        int rightcount = iRight-index;
+        root.left = bb(inorder,iLeft,index-1,postorder,pLeft,pLeft+leftcount-1);
+        root.right = bb(inorder,index+1,iRight,postorder,pLeft+leftcount,pRight-1);
+        return root;
+    }
+    public int find(int[] A,int tar) {
+        int index = -1;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] == tar) {
                 index = i;
                 break;
             }
         }
-        int leftcount = index-iLeft;
-        root.left = creatTree(inorder,iLeft,index-1,postorder,pLeft,pLeft+leftcount-1);
-        root.right = creatTree(inorder,index+1,iRight,postorder,pLeft+leftcount,pRight-1);
-
-        return root;
+        return index;
     }
 
 }

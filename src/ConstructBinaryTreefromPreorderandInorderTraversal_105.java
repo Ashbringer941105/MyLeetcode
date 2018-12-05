@@ -25,53 +25,66 @@ import java.util.Collections;
    15   7
  */
 public class ConstructBinaryTreefromPreorderandInorderTraversal_105 {
+//    public TreeNode buildTree(int[] preorder, int[] inorder) {
+//        if (preorder == null || preorder.length == 0) { return null; }
+//        return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+////        return buildTree1(preorder,inorder);
+//
+//    }
+//
+//    public TreeNode buildTree(int[] preorder,int pLeft,int pRight,int[] inorder,int iLeft,int iRight){
+//        if(pLeft>pRight || iLeft> iRight){
+//            return null;
+//        }
+//        TreeNode a = new TreeNode(preorder[pLeft]);
+//        // 查找前序遍历中的最前面的那个数，在中序遍历中的位置
+//        int index =find(inorder,iLeft,iRight,a.val);
+//
+//        int lengthOfLeft = index-iLeft; // 当前节点左子树的节点个数
+////        int[] x = Arrays.copyOfRange(preorder,0,preorder.length-1);
+//        a.left = buildTree(preorder,pLeft+1,pLeft+1+lengthOfLeft-1,inorder,iLeft,index-1);
+//        a.right = buildTree(preorder,pLeft+1+lengthOfLeft,pRight,inorder,index+1,iRight);
+//        return a;
+//
+//    }
+//    public int find(int[] a,int left,int right,int targer){
+//        int result = -1;
+//        for(int i = left;i<=right;i++){
+//            if(a[i]==targer){
+//                result=i;
+//                break;
+//            }
+//        }
+//        return result;
+//    }
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (preorder == null || preorder.length == 0) { return null; }
-        return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
-//        return buildTree1(preorder,inorder);
-
-    }
-
-    public TreeNode buildTree(int[] preorder,int pLeft,int pRight,int[] inorder,int iLeft,int iRight){
-        if(pLeft>pRight || iLeft> iRight){
+        if(preorder.length==0 || inorder.length==0){
             return null;
         }
-        TreeNode a = new TreeNode(preorder[pLeft]);
-        // 查找前序遍历中的最前面的那个数，在中序遍历中的位置
-        int index =find(inorder,iLeft,iRight,a.val);
-
-        int lengthOfLeft = index-iLeft; // 当前节点左子树的节点个数
-//        int[] x = Arrays.copyOfRange(preorder,0,preorder.length-1);
-        a.left = buildTree(preorder,pLeft+1,pLeft+1+lengthOfLeft-1,inorder,iLeft,index-1);
-        a.right = buildTree(preorder,pLeft+1+lengthOfLeft,pRight,inorder,index+1,iRight);
-        return a;
-
+        TreeNode result =bb(preorder,0,preorder.length-1,inorder,0,inorder.length-1);
+        return result;
     }
-
-    public TreeNode c(int[] pre,int pLeft,int pRight,int[] inorder,int iLeft,int iRight){
+    public TreeNode bb(int[] preorder,int pLeft,int pRight, int[] inorder,int iLeft,int iRight){
         if(pLeft>pRight || iLeft>iRight){
             return null;
         }
-        TreeNode a = new TreeNode(pre[pLeft]);
-        int index =find(inorder,iLeft,iRight,a.val);
-        int count = index - iLeft;
-        a.left = c(pre,pLeft+1,pLeft+1+count-1,inorder,iLeft,index-1);
-        a.right = c(pre,pLeft+1+count,pRight,inorder,index+1,iRight);
-        return a;
-
-
-
+        TreeNode root = new TreeNode(preorder[pLeft]);
+        int index =find(inorder,root.val);
+        int leftcount =index - iLeft;
+        int rightcount = iRight-index;
+        root.left = bb(preorder,pLeft+1,pLeft+leftcount,inorder,iLeft,index-1);
+        root.right = bb(preorder,pLeft+leftcount+1,pRight,inorder,index+1,iRight);
+        return root;
     }
-    public int find(int[] a,int left,int right,int targer){
-        int result = -1;
-        for(int i = left;i<=right;i++){
-            if(a[i]==targer){
-                result=i;
+    public int find(int[] A,int tar) {
+        int index = -1;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] == tar) {
+                index = i;
                 break;
             }
         }
-        return result;
+        return index;
     }
-
 
 }
