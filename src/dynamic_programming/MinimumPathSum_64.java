@@ -45,7 +45,7 @@ public class MinimumPathSum_64 {
                 }
             }
         }
-        return data[data.length-1][c.length-1];
+        return data[data.length-1][data.length-1];
 
 
 
