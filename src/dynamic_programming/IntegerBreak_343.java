@@ -1,5 +1,9 @@
 package dynamic_programming;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @Author 宋宗垚
  * @Date 2018/12/18 13:21
@@ -20,11 +24,20 @@ package dynamic_programming;
 解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36。
 说明: 你可以假设 n 不小于 2 且不大于 58。
  */
-public class IntegerBreak_343 {
-    public static void main(String[] args) {
-        integerBreak(10);
+
+public class IntegerBreak_343 implements A {
+
+
+    public static void main(String[] args)  {
+
+//
+
     }
-    public static int integerBreak(int n) {
+
+
+    public  int integerBreak(int n) {
+
+
         int[] data = new int[n];
         data[0] = 1;
         data[1] = 1;
