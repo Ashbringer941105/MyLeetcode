@@ -8,43 +8,34 @@ import sun.reflect.generics.tree.Tree;
  * @Description 701二叉搜索树的插入操作
  */
 public class InsertintoaBinarySearchTree_701 {
-    public TreeNode insertIntoBST(TreeNode root, int val) {
-        TreeNode data = new TreeNode(val);
-        if (null==root){
-            return data;
-        }else {
-//            TreeNode p = null;
-            TreeNode re = searchBST(root,val,null);
-            if (null!=re){
-                if(re.val>val){
-                    re.left = data;
-                }else {
-                    re.right = data;
-                }
-            }
-            return root;
-        }
 
+    public TreeNode searchBST(TreeNode root, int val) {
+        TreeNode target = find(root,val,null);
+        if(target.val==val){
+            return target;
+        }else{
+            return null;
+        }
     }
 
     /**
-     * 也就是说如果树中没有这个值的话，就返回其父节点
-     * @param root 要查找的树的根节点
-     * @param val 要查找的节点的值
-     * @param pre 根节点的父节点
-     * @return 如果又val这个值则返回的是带有val这个值的节点，如果没有val这个值，则返回的是插入操作中可以成为插入节点的双亲节点的节点
+     * 在二叉排序树中查找指定值的节点
+     * @param root 输入的根节点
+     * @param key 要查找的值
+     * @param p 输入的根节点的双亲
+     * @return 查找到之后存储目标节点的对象,如果没查找到，则给他的对象是距离key最近的值,也就是插入操作中应该插入该节点的父节点
      */
-    public TreeNode searchBST(TreeNode root, int val,TreeNode pre) {
+    public TreeNode find(TreeNode root, int key,TreeNode p){
         TreeNode result = null;
-        if (null==root){
-            // 返回父节点
-            return pre;
-        }else if (root.val==val){
-            return root;
-        }else if(root.val>val){
-            return searchBST(root.left,val,root);
-        }else if(root.val<val){
-            return searchBST(root.right,val,root);
+        if(root==null){
+            return p;
+        }else if (root.val==key){
+            p = root;
+            return p;
+        }else if (root.val > key){
+            return find(root.left,key,root);
+        }else if (root.val < key){
+            return find(root.right,key,root);
         }
         return result;
     }

@@ -24,16 +24,37 @@
  */
 
 public class InvertBinaryTree_226 {
+//    public TreeNode invertTree(TreeNode root) {
+//        if(root ==null){
+//            return null;
+//        }else {
+//            TreeNode left = invertTree(root.left);
+//            TreeNode right = invertTree(root.right);
+//            root.left = right;
+//            root.right = left;
+//            return root;
+//        }
+//
+//    }
     public TreeNode invertTree(TreeNode root) {
-        if(root ==null){
+        if (root == null){
             return null;
+//        }else if (root.left==null && root.right==null){
+//            return root;
+//        }else if(root.left == null){
+//            root.left = root.right;
+//            root.right= null;
+//            return root;
+//        }else if(root.right == null){
+//            root.right = root.left;
+//            root.left = null;
+//            return root;
         }else {
-            TreeNode left = invertTree(root.left);
-            TreeNode right = invertTree(root.right);
-            root.left = right;
-            root.right = left;
+            TreeNode temp = root.left;
+            root.left = invertTree(root.right);
+            root.right = invertTree(temp);
             return root;
-        }
 
+        }
     }
 }

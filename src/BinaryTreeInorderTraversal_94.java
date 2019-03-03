@@ -17,16 +17,38 @@ import java.util.List;
 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
  */
 public class BinaryTreeInorderTraversal_94 {
-    List<Integer> result = new ArrayList<>();
+//    List<Integer> result = new ArrayList<>();
+//    public List<Integer> inorderTraversal(TreeNode root) {
+//        if(root == null){
+//            return  result;
+//        }else {
+//            inorderTraversal(root.left);
+//            result.add(root.val);
+//            inorderTraversal(root.right);
+//            return result;
+//        }
+//    }
     public List<Integer> inorderTraversal(TreeNode root) {
-        if(root == null){
-            return  result;
+        List<Integer> data = new ArrayList<>();
+        if (root==null){
+            return data;
         }else {
-            inorderTraversal(root.left);
-            result.add(root.val);
-            inorderTraversal(root.right);
-            return result;
+
+            return f(root,data);
         }
     }
+
+    public List<Integer> f(TreeNode root,List<Integer> list) {
+        if (root==null){
+            return list;
+        }else {
+            f(root.left,list);
+            list.add(root.val);
+            f(root.right,list);
+            return list;
+        }
+    }
+
+
 
 }
