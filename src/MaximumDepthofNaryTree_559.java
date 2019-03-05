@@ -1,3 +1,5 @@
+import sort.Main;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,22 +21,44 @@ import java.util.List;
  */
 public class MaximumDepthofNaryTree_559 {
     //int max = 0;
+//    public int maxDepth(Node root) {
+//        if(root==null){
+//            return 0;
+//        }else {
+//            int max = 0;
+//            List<Integer> x = new ArrayList<>();
+//            for(int i = 0;i<root.children.size();i++){
+//                int deep = maxDepth(root.children.get(i));
+//                x.add(deep);
+//            }
+//            for(int i = 0;i<x.size();i++){
+//                if(x.get(i)>max){
+//                    max = x.get(i);
+//                }
+//            }
+//            return max+1;
+//        }
+//    }
     public int maxDepth(Node root) {
-        if(root==null){
+        if (root==null){
             return 0;
         }else {
-            int max = 0;
-            List<Integer> x = new ArrayList<>();
-            for(int i = 0;i<root.children.size();i++){
-                int deep = maxDepth(root.children.get(i));
-                x.add(deep);
+            return ff(root,0);
+        }
+
+
+
+    }
+    public int ff(Node root,int deepth){
+        if (root==null){
+            return deepth;
+        }else {
+            int d = 0;
+            for (Node n :root.children){
+                d = Math.max(d,ff(n,deepth +1));
             }
-            for(int i = 0;i<x.size();i++){
-                if(x.get(i)>max){
-                    max = x.get(i);
-                }
-            }
-            return max+1;
+            return d + 1;
         }
     }
+
 }
