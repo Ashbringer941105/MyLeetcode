@@ -23,32 +23,50 @@ import java.util.List;
    2     1         2                 3
  */
 public class UniqueBinarySearchTrees_96 {
+//    public int numTrees(int n) {
+//        /*
+//        下面写的这个时间超过限制了
+//         */
+////       if(n == 0 || n == 1 ){
+////           return 1;
+////        }
+////        int sum = 0;
+////        for(int i = 1;i<=n;i++){
+////            sum = sum + numTrees(i-1)* numTrees(n-i);
+////        }
+////        return sum;
+//        if (n == 0)return 0;
+//        if (n == 1) return 1;
+//
+//        int[] nums = new int[n+1];
+//        nums[0] = 1; nums[1] = 1;
+//
+//        for (int i = 2; i <= n; i++) {
+//            for (int j = 0; j < i; j++) {
+//                nums[i] = nums[i] + nums[j] * nums[i-1-j];
+//            }
+//        }
+//        return nums[n];
+//
+//
+//
+//    }
+
     public int numTrees(int n) {
-        /*
-        下面写的这个时间超过限制了
-         */
-//       if(n == 0 || n == 1 ){
-//           return 1;
-//        }
-//        int sum = 0;
-//        for(int i = 1;i<=n;i++){
-//            sum = sum + numTrees(i-1)* numTrees(n-i);
-//        }
-//        return sum;
-        if (n == 0)return 0;
-        if (n == 1) return 1;
-
-        int[] nums = new int[n+1];
-        nums[0] = 1; nums[1] = 1;
-
-        for (int i = 2; i <= n; i++) {
-            for (int j = 0; j < i; j++) {
-                nums[i] = nums[i] + nums[j] * nums[i-1-j];
+        if (n==0 || n==1){
+            return 1;
+        }else{
+            int[] data = new int[n+1];
+            for (int i=0;i<=n;i++){
+                if (i==0 ||i==1){
+                    data[i]=1;
+                }else {
+                    for (int j = 0;j<i;j++){
+                        data[i] = data[i] + data[j]*data[i-j-1];
+                    }
+                }
             }
+            return data[n];
         }
-        return nums[n];
-
-
-
     }
 }
