@@ -28,16 +28,29 @@ cost 的长度将会在 [2, 1000]。
 每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。
  */
 public class MinCostClimbingStairs_746 {
+//    public int minCostClimbingStairs(int[] cost) {
+//
+//        int[] data = new int[cost.length];
+//        data[0] = cost[0];
+//        data[1] = cost[1];
+//        for(int i = 2;i<cost.length;i++){
+//            data[i] = Math.min(data[i-1],data[i-2])+cost[i];
+//        }
+//        return Math.min(data[data.length-1],data[data.length-2]);
+//
+//    }
     public int minCostClimbingStairs(int[] cost) {
-
         int[] data = new int[cost.length];
-        data[0] = cost[0];
-        data[1] = cost[1];
-        for(int i = 2;i<cost.length;i++){
-            data[i] = Math.min(data[i-1],data[i-2])+cost[i];
+        for (int i = 0;i<cost.length;i++){
+            if (i==0){
+                data[i] = cost[i];
+            }else if (i==1){
+                data[i] = cost[i];
+            }else {
+                data[i] = cost[i] + Math.min(data[i-1],data[i-2]);
+            }
         }
         return Math.min(data[data.length-1],data[data.length-2]);
-
     }
 
 }

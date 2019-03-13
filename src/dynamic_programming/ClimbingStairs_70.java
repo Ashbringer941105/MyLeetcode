@@ -32,22 +32,35 @@ public class ClimbingStairs_70 {
     public static void main(String[] args){
         int x = climbStairs(2);
     }
+//    public static int climbStairs(int n) {
+//        int result = 0;
+//        int[] data = new int[n];
+//        for(int i = 0;i<data.length;i++){
+//            if(i==0) {
+//                data[i] = 1;
+//            }else if(i==1){
+//                data[i] = 2;
+//            }else {
+//                data[i] = data[i-1]+data[i-2];
+//            }
+//
+//        }
+//        return data[n-1];
+//    }
     public static int climbStairs(int n) {
-        int result = 0;
         int[] data = new int[n];
-        for(int i = 0;i<data.length;i++){
-            if(i==0) {
+        for (int i =0;i<n;i++){
+            if (i==0){
+                // 如果只有一节台阶
                 data[i] = 1;
-            }else if(i==1){
+            }else if (i==1){
+                // 如果有两节台阶
                 data[i] = 2;
             }else {
-                data[i] = data[i-1]+data[i-2];
+                // 如果有三节或者三节以上的台阶，则可以从前一节台阶跳一个上来，也可以从前前一个跳俩上来
+                data[i] = data[i-1] + data[i-2];
             }
-
         }
         return data[n-1];
-
-
-
     }
 }

@@ -1,5 +1,8 @@
 package dynamic_programming;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * @Author 宋宗垚
  * @Date 2018/12/12 21:10
@@ -25,27 +28,48 @@ package dynamic_programming;
 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
  */
 public class BestTimetoBuyandSellStock_121 {
-    public static void main(String[] args){
-        int[] x = {7,1,5,3,6,4};
-        maxProfit(x);
+//    public  int maxProfit(int[] prices) {
+//        int[] gain = new int[prices.length];
+//        int[] mm = new int[prices.length];
+//        int max = Integer.MIN_VALUE;
+//        for(int i = prices.length-1;i>=0;i--){
+//            if(i==prices.length-1){
+//                mm[i] = prices[i];
+//            }else {
+//                mm[i] = Math.max(prices[i],mm[i+1]);
+//            }
+//            gain[i] =  mm[i] - prices[i];
+//            if(gain[i]>max){
+//                max = gain[i];
+//            }
+//        }
+//        return Math.max(0,max);
+//
+//
+//    }
+    public  static void main(String args[]){
+        int[] dd = {7,1,5,3,6,4};
+        maxProfit(dd);
     }
     public static int maxProfit(int[] prices) {
-        int[] gain = new int[prices.length];
-        int[] mm = new int[prices.length];
-        int max = Integer.MIN_VALUE;
-        for(int i = prices.length-1;i>=0;i--){
-            if(i==prices.length-1){
-                mm[i] = prices[i];
+        int[] data = new int[prices.length];
+        int max = 0;
+        for (int i =0;i<prices.length;i++){
+            if (i==0){
+                data[i] = -prices[i];
             }else {
-                mm[i] = Math.max(prices[i],mm[i+1]);
-            }
-            gain[i] =  mm[i] - prices[i];
-            if(gain[i]>max){
-                max = gain[i];
+                int bianhua = prices[i] - prices[i-1];
+                if (data[i-1] <0){
+                    data[i] = bianhua;
+                }else {
+                    data[i] = data[i-1] +bianhua;
+                }
+                if (data[i]>max){
+                    max = data[i];
+                }
             }
         }
-        return Math.max(0,max);
-
-
+        return max;
     }
+
 }
