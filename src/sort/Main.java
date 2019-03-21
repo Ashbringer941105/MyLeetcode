@@ -21,19 +21,19 @@ public class Main {
         }
     }
     public static void main(String args[]){
-//        List<Integer> data = new ArrayList<>();
-//        data.add(14);
-//        data.add(1);
-//        data.add(22);
-//        data.add(3);
-//        data.add(7);
-//        data.add(5);
-//        data.add(10);
-//        List<Integer> result = StraightInsertion.straightInsertionSort(data);
-//        p(result);
-        int[] x = {-10,-3,0,5,9};
-        int[] b = Arrays.copyOfRange(x,x.length/2+1,x.length);
-        int xx = 10;
+        List<Integer> data = new ArrayList<>();
+        data.add(14);
+        data.add(1);
+        data.add(22);
+        data.add(3);
+        data.add(7);
+        data.add(5);
+        data.add(10);
+        List<Integer> result = Quick.QuickSort(data);
+        p(result);
+//        int[] x = {-10,-3,0,5,9};
+//        int[] b = Arrays.copyOfRange(x,x.length/2+1,x.length);
+//        int xx = 10;
     }
 
 }
