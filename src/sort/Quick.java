@@ -10,32 +10,55 @@ public class Quick {
         return L;
 
     }
-    public static void QSort(List<Integer> list,int low ,int high){
-        int pivot;
-        if (low<high){
-            pivot = Partition(list,low,high);
-            QSort(list,low,pivot);
-            QSort(list,pivot+1,high);
+    public static void QSort(List<Integer> list,int start ,int end){
+        if (start>=end){
+            return;
         }
-    }
-    public static int Partition(List<Integer> list,int low,int high){
-        int pivotkey = list.get(low);
+        int mid = list.get(start);
+        int low = start;
+        int high = end;
         while (low<high){
-            while (low<high && list.get(high)<=pivotkey){
+            while (low<high && list.get(high)>mid){
                 high--;
             }
-            swap(list,low,high);
-            while (low<high && list.get(low)<=pivotkey){
+            list.set(low,list.get(high));
+            while (low<high && list.get(low)<=mid){
                 low++;
             }
-            swap(list,low,high);
+            list.set(high,list.get(low));
         }
-        return low;
+        list.set(low,mid);
+        QSort(list,start,low-1);
+        QSort(list,low+1,end);
     }
 
-    public static void swap(List<Integer> list,int low ,int high){
-        int temp = list.get(low);
-        list.set(low,list.get(high));
-        list.set(high,temp);
-    }
+
+//    public static void QSort(List<Integer> list,int low ,int high){
+//        int pivot;
+//        if (low<high){
+//            pivot = Partition(list,low,high);
+//            QSort(list,low,pivot);
+//            QSort(list,pivot+1,high);
+//        }
+//    }
+//    public static int Partition(List<Integer> list,int low,int high){
+//        int pivotkey = list.get(low);
+//        while (low<high){
+//            while (low<high && list.get(high)<=pivotkey){
+//                high--;
+//            }
+//            swap(list,low,high);
+//            while (low<high && list.get(low)<=pivotkey){
+//                low++;
+//            }
+//            swap(list,low,high);
+//        }
+//        return low;
+//    }
+//
+//    public static void swap(List<Integer> list,int low ,int high){
+//        int temp = list.get(low);
+//        list.set(low,list.get(high));
+//        list.set(high,temp);
+//    }
 }
