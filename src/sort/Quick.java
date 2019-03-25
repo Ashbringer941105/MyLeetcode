@@ -11,6 +11,8 @@ public class Quick {
 
     }
     public static void QSort(List<Integer> list,int start ,int end){
+
+
         if (start>=end){
             return;
         }
