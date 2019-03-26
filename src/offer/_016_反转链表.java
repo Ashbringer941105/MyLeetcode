@@ -29,4 +29,18 @@ public class _016_反转链表 {
             return result;
         }
     }
+
+    /**
+     * 利用三个指针进行替换
+     * @param head
+     * @return
+     */
+//    public ListNode ReverseList2(ListNode head) {
+//        ListNode pPrev = null;
+//        ListNode pNode = head;
+//        ListNode pNext = null;
+//        while (pNode!=null){
+//
+//        }
+//    }
 }

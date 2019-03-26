@@ -8,6 +8,12 @@ import java.util.Stack;
  * @Description TODO
  */
 public class _015_链表中倒数第K个节点 {
+    /**
+     * 栈的方法
+     * @param head
+     * @param k
+     * @return
+     */
     public ListNode FindKthToTail(ListNode head,int k) {
         Stack<ListNode> stack = new Stack<>();
         while (head!=null){
@@ -22,5 +28,31 @@ public class _015_链表中倒数第K个节点 {
             }
             return stack.peek();
         }
+    }
+
+    /**
+     * 前后双指针的方法
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode FindKthToTail2(ListNode head,int k) {
+        if (head==null || k == 0){
+            return null;
+        }
+        ListNode qian = head;
+        ListNode behind = head;
+        for (int i = 0;i<k;i++){
+            if (qian!=null){
+                qian = qian.next;
+            }else {
+                return null;
+            }
+        }
+        while (qian!=null){
+            qian = qian.next;
+            behind = behind.next;
+        }
+        return behind;
     }
 }
