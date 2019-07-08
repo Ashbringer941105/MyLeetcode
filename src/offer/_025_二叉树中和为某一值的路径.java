@@ -20,7 +20,8 @@ public class _025_二叉树中和为某一值的路径 {
         return data;
 
     }
-    public void qianXuBianLi(TreeNode root,int target,ArrayList<ArrayList<Integer>> data,ArrayList<Integer> temp_list,int temp_sum){
+    public void qianXuBianLi(TreeNode root,int target,ArrayList<ArrayList<Integer>> data,
+                             ArrayList<Integer> temp_list,int temp_sum){
         if (root.left==null && root.right==null){
             // 如果是叶子结点
             ArrayList<Integer> new_list = new ArrayList<>(temp_list);
