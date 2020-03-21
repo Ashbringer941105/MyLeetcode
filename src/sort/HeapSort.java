@@ -3,6 +3,14 @@ package sort;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HeapSort {
+
+    /**
+     * 测试git修改
+     */
+    public void testGit(){
+        System.out.println("测试");
+    }
+
     public static void main(String[] args){
         int[] arr = { 50, 10, 90, 30, 70, 40, 80, 60, 20 };
         System.out.println("排序之前：");
